@@ -1,4 +1,4 @@
-/* THIS PROGRAMS IMPLEMENTS THE GAUSS JORDAN METHOD */
+/* THIS PROGRAMS IMPLEMENTS THE GAUSS ELIMINATION METHOD */
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -21,25 +21,13 @@ int main()
             for(int j=0;j<n;j++){
                 a[i][j]+=(-1.0*var)*a[k][j];
             }
-            b[i]+=(-1.0*var)*b[k];
+             b[i]+=(-1.0*var)*b[k];
         }
         k++;
     }
-    k=n-1;
-    while(k){
-        double pivot=a[k][k];
-        for(int i=k-1;i>=0;i--){
-            double var=((1.0*a[i][k])/pivot);
-            for(int j=0;j<n;j++){
-                a[i][j]+=(-1.0*var)*a[k][j];
-            }
-            b[i]+=(-1.0*var)*b[k];
-        }
-        k--;
-    }
     double x3=(1.0*b[2])/a[2][2];
-    double x2=(1.0*b[1])/a[1][1];
-    double x1=(1.0*b[0])/a[0][0];
+    double x2=(1.0)*(b[1]-a[1][2]*x3)/a[1][1];
+    double x1=1.0*(b[0]-a[0][2]*x3-a[0][1]*x2)/a[0][0];
     cout<<"\nfirst array after the operations \n\n";
     for(int i=0;i<n;i++){
         for(int j=0;j<n;j++)
@@ -51,5 +39,4 @@ int main()
         cout<<fixed<<setprecision(2)<<b[i]<<" ";
     printf("\n\nx1 = %0.2f\nx2 = %0.2f\nx3 = %0.2f\n",x1,x2,x3);
 }
-
 
